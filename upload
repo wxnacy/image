@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+file=$1
+cp $file common/
+./push upload $file
+
+
+
