@@ -13,31 +13,44 @@ from shutil import copyfile
 
 PROJECT_NAME='image'
 BUCKET_NAME='common'
+DEFAULT_IMAGE_DIR = 'common'
 
 @click.command()
-@click.option('-k', default='', help='Image key name')
+@click.option('-k', '--key', default='', help='Image key name. Default value is filename')
 @click.argument('filepath')
-def run(k, filepath):
-    '''上传操作'''
-    print(k)
+def run(filepath, key):
+    '''Upload image to your image github'''
+    print(key)
+    print(filepath)
     os.path.dirname
     command_file = sys.argv[0]
-    image_dir = os.path.dirname(command_file)
-        #  print("Usage: upload_image <filename>")
-    #  if len(sys.argv) == 1:
-    #  filepath = sys.argv[1]
+    print(command_file)
+    image_home = os.path.dirname(command_file)
     filename = basename(filepath)
-    to_file = '{}/{}/{}'.format(image_dir, BUCKET_NAME, filename)
+
+    image_dir = DEFAULT_IMAGE_DIR
+    if key:
+        if '/' in key:
+            image_dir = os.path.dirname(key)
+            p = subprocess.Popen(['mkdir', '-p', image_dir])
+            p.communicate()
+            file_key = key
+        else:
+            file_key = '{}/{}'.format(DEFAULT_IMAGE_DIR, key)
+    else:
+        file_key = '{}/{}'.format(DEFAULT_IMAGE_DIR, filename)
+
+    to_file = '{}/{}'.format(image_home, file_key)
     copyfile(filepath, to_file)
-    push_file = '{}/push'.format(image_dir)
+    push_file = '{}/push'.format(image_home)
     #  subprocess.check_call([push_file, image_dir, 'upload {}'.format(filename)])
     msg = 'upload {}'.format(filename)
-    p = subprocess.Popen([push_file, image_dir, msg])
+    p = subprocess.Popen([push_file, image_home, msg])
     p.wait()
     #  p.communicate()
 
-    url = 'https://raw.githubusercontent.com/wxnacy/{}/master/{}/{}'.format('image',
-        'common', filename)
+    url = 'https://raw.githubusercontent.com/wxnacy/{}/master/{}'.format('image',
+            file_key)
 
     print('\nImage url is: {}'.format(url))
     print('And it has been copied to the clipboard, you can use it with <ctrl-v>')
