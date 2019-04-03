@@ -25,10 +25,7 @@ if __name__ == "__main__":
     to_file = '{}/{}/{}'.format(image_dir, BUCKET_NAME, filename)
     copyfile(filepath, to_file)
     push_file = '{}/push'.format(image_dir)
-    #  subprocess.check_call(['cd', image_dir, '&&', 'ls'])
-    #  subprocess.check_call(['ls'])
     subprocess.check_call([push_file, image_dir, 'upload {}'.format(filename)])
-    #  subprocess.check_call(['git', 'add', '.'])
 
     print('https://raw.githubusercontent.com/wxnacy/{}/master/{}/{}'.format('image',
         'common', filename))

@@ -1,9 +1,20 @@
 #!/usr/bin/env bash
 
 path=$1
-PUSH_MSG=${@/$1/}
+msg=${@/$1/}
+DIR=`pwd`
 
-cd $path
+if [[ "$DIR" != "$path" && -d $path ]];then
+    echo 'cd'
+    cd $path
+else
+    msg=$@
+fi
 
-git pull && git add . && git commit -m "${PUSH_MSG}" && git push origin master
+# echo $msg
 
+push(){
+    git pull && git add . && git commit -m "${msg}" && git push origin master
+}
+
+push
