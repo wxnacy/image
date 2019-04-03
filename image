@@ -24,7 +24,10 @@ if __name__ == "__main__":
     to_file = '{}/{}/{}'.format(image_dir, BUCKET_NAME, filename)
     copyfile(filepath, to_file)
     push_file = '{}/push'.format(image_dir)
-    subprocess.check_call([push_file, image_dir, 'upload {}'.format(filename)])
+    #  subprocess.check_call([push_file, image_dir, 'upload {}'.format(filename)])
+    msg = 'upload {}'.format(filename)
+    p = subprocess.Popen([push_file, image_dir, msg], stdout=subprocess.PIPE)
+    p.wait()
 
     url = 'https://raw.githubusercontent.com/wxnacy/{}/master/{}/{}'.format('image',
         'common', filename)
