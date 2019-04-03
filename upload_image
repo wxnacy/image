@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+# Author: wxnacy(wxnacy@gmail.com)
+# Description:
+
+import sys
+import os
+import subprocess
+from os.path import basename
+from shutil import copyfile
+
+PROJECT_NAME='image'
+BUCKET_NAME='common'
+
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        print("Usage: upload_image <filename>")
+    filepath = sys.argv[1]
+    filename = basename(filepath)
+    copyfile(filepath, '{}/{}'.format(BUCKET_NAME, filename))
+    subprocess.check_call(['./push', 'upload {}'.format(filename)])
+
+    print('https://raw.githubusercontent.com/wxnacy/{}/master/{}/{}'.format('image',
+        'common', filename))
+
+
+
+
+
+

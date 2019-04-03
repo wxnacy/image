@@ -1,8 +1,15 @@
 #!/usr/bin/env bash
 
+project_name=image
+dir_name=common
 file=$1
-cp $file common/
-./push upload $file
+filenames=(${file//\// })
+echo ${filenames[0]}
+echo ${filenames[-1]}
+
+# cp $file $dir_name
+# ./push upload $file
+# echo "https://raw.githubusercontent.com/wxnacy/${project_name}/master/${dir_name}/${}"
 
 
 
