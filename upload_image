@@ -6,6 +6,7 @@
 import sys
 import os
 import subprocess
+import pyperclip
 from os.path import basename
 from shutil import copyfile
 
@@ -27,10 +28,11 @@ if __name__ == "__main__":
     push_file = '{}/push'.format(image_dir)
     subprocess.check_call([push_file, image_dir, 'upload {}'.format(filename)])
 
-    print('https://raw.githubusercontent.com/wxnacy/{}/master/{}/{}'.format('image',
-        'common', filename))
+    url = 'https://raw.githubusercontent.com/wxnacy/{}/master/{}/{}'.format('image',
+        'common', filename)
 
-
+    print('Image url is: {}'.format(url))
+    pyperclip.copy(url)
 
 
 
