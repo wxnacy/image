@@ -31,7 +31,8 @@ if __name__ == "__main__":
     url = 'https://raw.githubusercontent.com/wxnacy/{}/master/{}/{}'.format('image',
         'common', filename)
 
-    print('Image url is: {}'.format(url))
+    print('\nImage url is: {}'.format(url))
+    print('And it has been copied to the clipboard, you can use it with ctrl-v')
     pyperclip.copy(url)
 
 
