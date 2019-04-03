@@ -7,20 +7,25 @@ import sys
 import os
 import subprocess
 import pyperclip
+import click
 from os.path import basename
 from shutil import copyfile
 
 PROJECT_NAME='image'
 BUCKET_NAME='common'
 
-def run():
+@click.command()
+@click.option('-k', default='', help='Image key name')
+@click.argument('filepath')
+def run(k, filepath):
     '''上传操作'''
+    print(k)
     os.path.dirname
     command_file = sys.argv[0]
     image_dir = os.path.dirname(command_file)
-    if len(sys.argv) == 1:
-        print("Usage: upload_image <filename>")
-    filepath = sys.argv[1]
+        #  print("Usage: upload_image <filename>")
+    #  if len(sys.argv) == 1:
+    #  filepath = sys.argv[1]
     filename = basename(filepath)
     to_file = '{}/{}/{}'.format(image_dir, BUCKET_NAME, filename)
     copyfile(filepath, to_file)
