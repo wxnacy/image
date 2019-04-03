@@ -14,10 +14,10 @@ BUCKET_NAME='common'
 
 if __name__ == "__main__":
     os.path.dirname
-    print(sys.argv)
+    #  print(sys.argv)
     command_file = sys.argv[0]
     image_dir = os.path.dirname(command_file)
-    print(image_dir)
+    #  print(image_dir)
     if len(sys.argv) == 1:
         print("Usage: upload_image <filename>")
     filepath = sys.argv[1]
