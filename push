@@ -5,7 +5,7 @@ msg=${@/$1/}
 DIR=`pwd`
 
 if [[ "$DIR" != "$path" && -d $path ]];then
-    echo 'cd'
+    # echo 'cd'
     cd $path
 else
     msg=$@
