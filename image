@@ -15,8 +15,6 @@ BUCKET_NAME='common'
 
 def run():
     '''上传操作'''
-
-if __name__ == "__main__":
     os.path.dirname
     command_file = sys.argv[0]
     image_dir = os.path.dirname(command_file)
@@ -40,4 +38,5 @@ if __name__ == "__main__":
     print('And it has been copied to the clipboard, you can use it with <ctrl-v>')
     pyperclip.copy(url)
 
-
+if __name__ == "__main__":
+    run()
