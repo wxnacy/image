@@ -13,6 +13,9 @@ from shutil import copyfile
 PROJECT_NAME='image'
 BUCKET_NAME='common'
 
+def run():
+    '''上传操作'''
+
 if __name__ == "__main__":
     os.path.dirname
     command_file = sys.argv[0]
@@ -28,6 +31,7 @@ if __name__ == "__main__":
     msg = 'upload {}'.format(filename)
     p = subprocess.Popen([push_file, image_dir, msg])
     p.wait()
+    #  p.communicate()
 
     url = 'https://raw.githubusercontent.com/wxnacy/{}/master/{}/{}'.format('image',
         'common', filename)
